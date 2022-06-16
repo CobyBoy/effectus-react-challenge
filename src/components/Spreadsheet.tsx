@@ -6,7 +6,7 @@ import ColumnHeader from './ColumnHeader.tsx'
 //@ts-ignore
 import EmptyReadOnlyCell from './EmptyReadOnlyCell.tsx'
 //@ts-ignore
-import { CellValue } from './utils.ts'
+import { CellValue } from '../shared/CellValue.types.ts'
 
 const Spreadsheet = ({ spreadsheet, setSpreadsheet }: { spreadsheet: CellValue[][], setSpreadsheet: React.Dispatch<React.SetStateAction<CellValue>[]> }) => {
 

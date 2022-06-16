@@ -1,6 +1,8 @@
 import React from 'react'
 //@ts-ignore
-import { CellValue, ERROR, cellMatchExpression, findValueByCell } from './utils.ts'
+import { ERROR, cellMatchExpression, findValueByCell } from '../shared/utils.ts'
+//@ts-ignore
+import CellValue from '../shared/CellValue.types.ts'
 
 const Cell = ({ spreadsheet, rowIndex, columnIndex, setSpreadsheet }: { spreadsheet: CellValue[][], rowIndex: number, columnIndex: number, setSpreadsheet: React.Dispatch<React.SetStateAction<CellValue>[]> }) => {
 

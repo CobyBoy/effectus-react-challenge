@@ -1,6 +1,6 @@
 import React from 'react'
 //@ts-ignore
-import { getColumnLabel } from './utils.ts'
+import { getColumnLabel } from '../shared/utils.ts'
 
 const ColumnHeader = ({colIndex}) => {
   return (

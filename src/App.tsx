@@ -1,10 +1,11 @@
 import './App.css';
 import React, { useEffect, useState } from 'react'
 //@ts-ignore
-import { createSpreadsheet } from './utils.ts';
+import { createSpreadsheet } from './shared/utils.ts';
 //@ts-ignore
-import Spreadsheet from './Spreadsheet.tsx';
-import { CellValue } from './utils';
+import Spreadsheet from './components/Spreadsheet.tsx';
+//@ts-ignore
+import { CellValue } from './shared/CellValue.types.ts';
 
 const App = () => {
   const [spreadsheet, setSpreadsheet] = useState<CellValue[]>([]);

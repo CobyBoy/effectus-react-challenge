@@ -1,7 +1,4 @@
-export interface CellValue {
-    formula: string;
-    value: string;
-}
+import { CellValue } from "./CellValue.types";
 
 export const ERROR = '#ERROR!'
 
