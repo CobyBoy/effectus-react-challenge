@@ -44,10 +44,10 @@ const Cell = ({ spreadsheet, rowIndex, columnIndex, setSpreadsheet }: { spreadsh
             let sumNumbers: string[] = cleanExpression.split('+');
             let substractionNumbers: string[][] = sumNumbers.map(n => n.split('-'));
             if (substractionNumbers[0].length === 1 && substractionNumbers.length === 1) {
-                newV= getValueWhenItsOne(cleanExpression);
+                newV = getValueWhenItsOne(cleanExpression);
             }
             else {
-                let result: number [] = substractionNumbers.map(nArray => {
+                let result: number[] = substractionNumbers.map(nArray => {
                     if (nArray.length === 1) {
                         return parseNumberOrCellValue(nArray[0])
                     }
@@ -105,12 +105,12 @@ const Cell = ({ spreadsheet, rowIndex, columnIndex, setSpreadsheet }: { spreadsh
 
     const getValueWhenItsOne = (expression: string) => {
         if (!isNaN(Number(expression))) {
-                    return expression;
-                }
-                else if (cellMatchExpression.test(expression)) { 
-                    return findValueByCell(expression, spreadsheet)
-                }
-                else return ERROR
+            return expression;
+        }
+        else if (cellMatchExpression.test(expression)) {
+            return findValueByCell(expression, spreadsheet)
+        }
+        else return ERROR
     }
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
@@ -121,11 +121,13 @@ const Cell = ({ spreadsheet, rowIndex, columnIndex, setSpreadsheet }: { spreadsh
     }
 
     return (
-        <input value={spreadsheet[rowIndex][columnIndex].value}
+        <input
+            value={spreadsheet[rowIndex][columnIndex].value}
             onChange={(e) => handleInputChange(e, rowIndex, columnIndex)}
             onFocus={(e) => showCellFunctionValue(rowIndex, columnIndex)}
             onBlur={(e) => showFormulaResult(rowIndex, columnIndex)}
-            onKeyDown={(e) => handleKeyDown(e)} />
+            onKeyDown={(e) => handleKeyDown(e)}
+        />
     )
 }
 
