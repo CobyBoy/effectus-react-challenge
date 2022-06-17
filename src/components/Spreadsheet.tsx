@@ -9,15 +9,14 @@ import EmptyReadOnlyCell from './EmptyReadOnlyCell.tsx'
 import { CellValue } from '../shared/CellValue.types.ts'
 
 const Spreadsheet = ({ spreadsheet, setSpreadsheet }: { spreadsheet: CellValue[][], setSpreadsheet: React.Dispatch<React.SetStateAction<CellValue>[]> }) => {
-
     return (
-        <table cellSpacing="0" cellPadding="0">
-            <tbody>
+        <table cellSpacing="0" cellPadding="0" id='spreadsheet-table'>
+            <tbody id='table-body'>
                 {
                     spreadsheet.map((row, rowIndex) => {
                         if (rowIndex === 0) {
                             return (
-                                <tr key={rowIndex}>
+                                <tr key={rowIndex} id={`row-${rowIndex}-id`}>
                                     {row.map((column, colIndex) => {
                                         if (colIndex === 0) {
                                             return (<EmptyReadOnlyCell key={colIndex} colIndex={colIndex} />)
@@ -28,7 +27,7 @@ const Spreadsheet = ({ spreadsheet, setSpreadsheet }: { spreadsheet: CellValue[]
                             )
                         }
                         return (
-                            <tr key={rowIndex}>
+                            <tr key={rowIndex} id={`row-${rowIndex}-id`}>
                                 <td className="row-header">{rowIndex}</td>
                                 {row.map((column, columnIndex) => {
                                     if (columnIndex !== 0) {
