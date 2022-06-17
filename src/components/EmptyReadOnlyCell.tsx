@@ -1,6 +1,6 @@
 import React from 'react'
 
-const EmptyReadOnlyCell = ({colIndex}) => {
+const EmptyReadOnlyCell = ({colIndex}:{ colIndex: number}) => {
   return (
     <td key={colIndex} className="column-header"/>
   )
