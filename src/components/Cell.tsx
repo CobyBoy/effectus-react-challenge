@@ -1,12 +1,14 @@
 import React from 'react'
 //@ts-ignore
-import { ERROR, cellMatchExpression, findValueByCell } from '../shared/utils.ts'
+import { findValueByCell } from '../shared/utils.ts'
+//@ts-ignore
+import { ERROR, cellMatchExpression } from '../shared/constants.ts'
 //@ts-ignore
 import CellValue from '../shared/CellValue.types.ts'
 
 const Cell = ({ spreadsheet, rowIndex, columnIndex, setSpreadsheet }: { spreadsheet: CellValue[][], rowIndex: number, columnIndex: number, setSpreadsheet: React.Dispatch<React.SetStateAction<CellValue>[]> }) => {
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>, rowInd: number, columnInd: number) => {
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>, rowInd: number, columnInd: number): void => {
         const newSpreadSheet = [...spreadsheet];
         newSpreadSheet[rowInd][columnInd] = {
             formula: e.target.value,
@@ -15,7 +17,7 @@ const Cell = ({ spreadsheet, rowIndex, columnIndex, setSpreadsheet }: { spreadsh
         setSpreadsheet(newSpreadSheet);
     };
 
-    const showCellFunctionValue = (rowInd: number, columnInd: number) => {
+    const showCellFunctionValue = (rowInd: number, columnInd: number): void => {
         const newSpreadSheet = [...spreadsheet];
         newSpreadSheet[rowInd][columnInd] = {
             ...newSpreadSheet[rowInd][columnInd],
@@ -24,7 +26,7 @@ const Cell = ({ spreadsheet, rowIndex, columnIndex, setSpreadsheet }: { spreadsh
         setSpreadsheet(newSpreadSheet);
     }
 
-    const showFormulaResult = (rowInd: number, columnInd: number) => {
+    const showFormulaResult = (rowInd: number, columnInd: number): void => {
         const newSpreadSheet = [...spreadsheet];
         newSpreadSheet[rowInd][columnInd] = {
             formula: spreadsheet[rowInd][columnInd].formula,
@@ -34,18 +36,18 @@ const Cell = ({ spreadsheet, rowIndex, columnIndex, setSpreadsheet }: { spreadsh
         setSpreadsheet(newSpreadSheet);
     }
 
-    const getCellValue = (formula: string) => {
-        let newV: string | number | undefined = formula;
+    const getCellValue = (formula: string): string | number => {
+        let newV: string | number = formula;
         if (formula[0] === "=") {
-            let expressionWithoutEquals = formula.slice(1);
-            let cleanExpression = expressionWithoutEquals.replace(/[a-zA-Z]*[^\d\w+-]/g, '');
-            let sumNumbers = cleanExpression.split('+');
-            let substractionNumbers = sumNumbers.map(n => n.split('-'));
+            let expressionWithoutEquals: string = formula.slice(1);
+            let cleanExpression: string = expressionWithoutEquals.replace(/[a-zA-Z]*[^\d\w+-]/g, '');
+            let sumNumbers: string[] = cleanExpression.split('+');
+            let substractionNumbers: string[][] = sumNumbers.map(n => n.split('-'));
             if (substractionNumbers[0].length === 1 && substractionNumbers.length === 1) {
                 newV= getValueWhenItsOne(cleanExpression);
             }
             else {
-                let result = substractionNumbers.map(nArray => {
+                let result: number [] = substractionNumbers.map(nArray => {
                     if (nArray.length === 1) {
                         return parseNumberOrCellValue(nArray[0])
                     }
@@ -111,7 +113,7 @@ const Cell = ({ spreadsheet, rowIndex, columnIndex, setSpreadsheet }: { spreadsh
                 else return ERROR
     }
 
-    const handleKeyDown = (e) => {
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
         if (e.key === 'Enter' || e.key === "Tab") {
             (document.activeElement as HTMLElement).blur();
         }

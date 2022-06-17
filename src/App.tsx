@@ -8,7 +8,7 @@ import Spreadsheet from './components/Spreadsheet.tsx';
 import { CellValue } from './shared/CellValue.types.ts';
 
 const App = () => {
-  const [spreadsheet, setSpreadsheet] = useState<CellValue[]>([]);
+  const [spreadsheet, setSpreadsheet] = useState<CellValue[][]>([]);
   useEffect(() => {
     setSpreadsheet(createSpreadsheet());
   }, [])
